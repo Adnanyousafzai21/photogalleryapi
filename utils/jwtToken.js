@@ -1,9 +1,14 @@
-export const sendToken = async (user, res, message , statusCode)=>{
-    const token = await user.getJwtToken();
-    const options= {
-        expiresIn :new Date(Date.now()+process.env.COOKIES_EXPIRES*24*60*60*1000),
-  
-        secure: true
+
+
+
+export const sendToken = async (user, res, message, statusCode) => {
+    try {
+        const token = await user.getJwtToken();
+
+        // Send the response with the token and other data in the body
+        res.status(statusCode).json({ success: true, message, user, token });
+    } catch (error) {
+        console.error("Error sending token:", error);
+        res.status(500).json({ success: false, message: "Internal Server Error" });
     }
-    res.status(statusCode).cookie("token",token, options).json({success:true, message, user, token})
-}
+};

@@ -2,6 +2,7 @@ import { Router } from "express";
 import { Login, Register, getuser, logedOut } from "../controller/user-controller.js";
 import isAutherized from "../meddleware/auth.js";
 
+
   const userRouter= Router()
 
 userRouter.post("/register", Register)
