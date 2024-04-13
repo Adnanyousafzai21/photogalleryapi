@@ -1,13 +1,15 @@
 import { Router } from "express";
 import isAutherized from "../meddleware/auth.js";
-import { deleteAllImages, getAllImages, getImagesByUser, uploadImage } from "../controller/images-controller.js";
-import { upload } from "../meddleware/multer-middleware.js";
+import { deleteAllImages, getAllImages, getImagesByUser, uploadImage, getImagesByBoxId, updateImagePrivacy } from "../controller/images-controller.js";
 
-const imageRouter = Router()
 
-imageRouter.post('/uploadImage',isAutherized, uploadImage);
-imageRouter.get("/getAllImg", getAllImages)
-imageRouter.get("/getuser", getImagesByUser)
+const imageRouter = Router();
+
+imageRouter.post('/uploadImage', isAutherized, uploadImage);
+imageRouter.get("/getAllImg", getAllImages);
+imageRouter.get("/getImageByUser", isAutherized, getImagesByUser);
 imageRouter.delete('/delete-all-images', deleteAllImages);
+imageRouter.get('/getImagesByBoxId/:boxId', getImagesByBoxId);
+imageRouter.put('/updateimage/:imageId', updateImagePrivacy);
 
-export { imageRouter }
+export { imageRouter };

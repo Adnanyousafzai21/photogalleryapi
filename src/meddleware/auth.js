@@ -4,9 +4,8 @@ import User from "../modle/user-model.js";
 const isAutherized = async (req, res, next) => {
     try {
         const token = req.headers.authorization && req.headers.authorization.split(" ")[1];
-        console.log("token", token);
+     
         if (!token) {
-            console.log("user is not authorized");
             return res.status(400).send({ message: "user is not authorized" });
         }
         

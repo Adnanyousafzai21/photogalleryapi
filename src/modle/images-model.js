@@ -1,11 +1,13 @@
+// imageModel.js
 import mongoose from "mongoose";
+
 const imageSchema = new mongoose.Schema({
     user: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
         // required: true
     },
-    imageUrl: {
+    imageUrls: {
         type: String,
         required: true
     },
@@ -20,4 +22,4 @@ const imageSchema = new mongoose.Schema({
 }, { timestamps: true });
 
 const Image = mongoose.model('Image', imageSchema);
-export {Image}
+export default Image;
