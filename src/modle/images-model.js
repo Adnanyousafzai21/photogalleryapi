@@ -17,7 +17,8 @@ const imageSchema = new mongoose.Schema({
     },
     box: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Box'
+        ref: 'Box',
+        required: [true , "box is required"]
     }
 }, { timestamps: true });
 

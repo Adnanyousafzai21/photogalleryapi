@@ -13,7 +13,7 @@ const createBox = async (req, res) => {
 
         const savedBox = await newBox.save();
 
-        res.status(201).json(savedBox);
+        res.status(201).send({message:"boxe created successfully", savedBox});
     } catch (error) {
         console.error('Error creating box:', error);
         res.status(500).json({ message: 'Internal Server Error' });
@@ -65,7 +65,7 @@ const updateBoxById = async (req, res) => {
             return res.status(404).json({ message: 'Box not found' });
         }
 
-        res.status(200).json(updatedBox);
+        res.status(200).send({message:"updated box privacy", updatedBox});
     } catch (error) {
         console.error('Error updating box:', error);
         res.status(500).json({ message: 'Internal Server Error' });

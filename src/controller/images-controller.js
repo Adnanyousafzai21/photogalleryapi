@@ -16,10 +16,10 @@ const uploadImage = async (req, res) => {
             return await newImage.save();
         }));
 
-        res.status(201).json(savedImages);
+        res.status(201).json({message:"images upladed sucessfully", savedImages});
     } catch (error) {
         console.error('Error uploading image:', error);
-        res.status(500).json({ message: 'Internal Server Error' });
+        res.status(500).json({ error: error.message, message: "Internal server error" });
     }
 };
 
