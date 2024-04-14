@@ -7,7 +7,7 @@ const boxRouter = Router();
 boxRouter.post("/createbox",isAutherized, createBox);
 boxRouter.get("/getboxByUser",isAutherized, getBoxesByUser);
 boxRouter.get("/getboxById/:boxId",isAutherized, getBoxById);
-boxRouter.delete("/deletebox/:id",isAutherized, deleteBoxById);
+boxRouter.delete("/deleteBoxeById/:boxId",isAutherized, deleteBoxById);
 boxRouter.put("/updatebox/:boxId", isAutherized, updateBoxById);
 
 

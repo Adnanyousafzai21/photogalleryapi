@@ -24,7 +24,7 @@ const getBoxesByUser = async (req, res) => {
         const userId = req.user._id;
         const boxes = await Box.find({ "user": userId }).populate({
             path: 'user',
-            select: 'fullname isPrivate' // Select only the fields you want to populate
+            select: 'fullname isPrivate'
         });
 
         res.status(200).json(boxes);
@@ -57,8 +57,6 @@ const updateBoxById = async (req, res) => {
         const { isPrivate } = req.body; 
 
         const updatedBox = await Box.findByIdAndUpdate(boxId, { isPrivate }, { new: true });
-
-        // const updateimage = await Image.findById({"box":boxId})
         const updateImages = await Image.updateMany({ box: boxId }, { isPrivate });
 
         if (!updatedBox) {
@@ -77,17 +75,20 @@ const deleteBoxById = async (req, res) => {
     try {
         const boxId = req.params.boxId;
 
+        console.log("box id is here",boxId)
+        const deleteImages = await Image.deleteMany({ box: boxId });
         const deletedBox = await Box.findByIdAndDelete(boxId);
 
         if (!deletedBox) {
             return res.status(404).json({ message: 'Box not found' });
         }
 
-        res.status(200).json({ message: 'Box deleted successfully' });
+        res.status(201).json({ message: 'Box & images of the box deleted successfully' });
     } catch (error) {
         console.error('Error deleting box:', error);
         res.status(500).json({ message: 'Internal Server Error' });
     }
 };
+
 
 export { createBox, getBoxesByUser, getBoxById, updateBoxById, deleteBoxById };
