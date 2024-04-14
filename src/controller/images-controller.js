@@ -97,4 +97,19 @@ const deleteAllImages = async (req, res) => {
     }
 };
 
-export { uploadImage, getAllImages, getImagesByUser, deleteAllImages , getImagesByBoxId, updateImagePrivacy}
+
+const deleteImage= async(req, res)=>{
+try{
+    
+    const imgId= req.params.imgId
+
+    const findImageAndDelete= await Image.findByIdAndDelete(imgId)
+    if(!findImageAndDelete) return res.status(404).send({message:"image not found"})
+    res.status(201).send({message:"image deleted successfully!! "})
+}catch(error){
+    console.error('Error', error)
+    res.status(500).send({message:error.message, message:"internal server errorr"})
+}
+}
+
+export { uploadImage, getAllImages, getImagesByUser, deleteAllImages, deleteImage, getImagesByBoxId,  updateImagePrivacy}

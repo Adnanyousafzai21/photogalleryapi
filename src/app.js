@@ -9,9 +9,8 @@ import { imageRouter } from "./routes/image-router.js";
 import { boxRouter } from "./routes/boxes-router.js";
 
 
-const app = express()
-
 Dbconnected()
+const app = express()
 const corsOptions = {
     origin:  `${process.env.ORIGIN}`, 
     methods: ["GET", "POST", "DELETE", "PUT"],
@@ -36,3 +35,5 @@ app.use("/api/v1/box", boxRouter)
 app.listen(process.env.PORT, () => {
     console.log(`server is runing on port ${process.env.PORT}`)
 })
+
+// export {app}
