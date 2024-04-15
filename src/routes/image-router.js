@@ -10,7 +10,7 @@ imageRouter.get("/getAllImg", getAllImages);
 imageRouter.get("/getImageByUser", isAutherized, getImagesByUser);
 imageRouter.delete("/deleteimageById/:imgId", isAutherized, deleteImage);
 imageRouter.delete('/delete-all-images', deleteAllImages);
-imageRouter.get('/getImagesByBoxId/:boxId', getImagesByBoxId);
+imageRouter.get('/SingleFloder/:boxId', getImagesByBoxId);
 imageRouter.put('/updateimage/:imageId', updateImagePrivacy);
 
 export { imageRouter };
